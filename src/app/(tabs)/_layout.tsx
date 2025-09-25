@@ -98,16 +98,6 @@ export default function TabsLayout() {
         }}
       />
       <Tabs.Screen
-        name="calendar"
-        options={{
-          headerShown: false,
-          title: "Calendar",
-          tabBarIcon: (props) => {
-            return <Entypo name="calendar" {...props} />;
-          },
-        }}
-      />
-      <Tabs.Screen
         name="analytics"
         options={{
           headerShown: false,
