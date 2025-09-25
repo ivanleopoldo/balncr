@@ -2,12 +2,12 @@ import { ExpoConfig, ConfigContext } from "expo/config";
 import { version } from "./package.json";
 
 // changes these variables
-const NAME = "MyApp";
+const NAME = "Balncr";
 const OWNER = "ivaintwc";
-const SLUG = "myapp";
-const SCHEME = "myapp";
-const PACKAGE_NAME = "com.ivaintwc.myapp";
-const BUNDLE_IDENTIFIER = "com.ivaintwc.myapp";
+const SLUG = "balncr";
+const SCHEME = "balncr";
+const PACKAGE_NAME = "com.ivaintwc.balncr";
+const BUNDLE_IDENTIFIER = "com.ivaintwc.balncr";
 
 const ICON = "./assets/images/icon.png";
 const SPLASH_ICON = {
