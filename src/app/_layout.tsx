@@ -8,6 +8,8 @@ import { Stack } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { useColorScheme } from "nativewind";
 import { SafeAreaProvider } from "react-native-safe-area-context";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+import React from "react";
 
 export const unstable_settings = {
   initialRouteName: "(tabs)",
@@ -18,13 +20,15 @@ export default function RootLayout() {
   const { colorScheme } = useColorScheme();
   return (
     <ThemeProvider value={NAV_THEME[colorScheme ?? "light"]}>
-      <SafeAreaProvider>
-        <Stack>
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        </Stack>
-        <PortalHost />
-        <StatusBar style={colorScheme === "dark" ? "light" : "dark"} />
-      </SafeAreaProvider>
+      <GestureHandlerRootView>
+        <SafeAreaProvider>
+          <Stack>
+            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+          </Stack>
+          <PortalHost />
+          <StatusBar style={colorScheme === "dark" ? "light" : "dark"} />
+        </SafeAreaProvider>
+      </GestureHandlerRootView>
     </ThemeProvider>
   );
 }

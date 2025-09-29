@@ -1,9 +1,9 @@
 import { Button } from "@/components/ui/button";
 import { Text } from "@/components/ui/text";
+import Entypo from "@expo/vector-icons/Entypo";
 import { Stack } from "expo-router";
 import { View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import Entypo from "@expo/vector-icons/Entypo";
 
 export default function HomeLayout() {
   return (
@@ -15,9 +15,9 @@ export default function HomeLayout() {
             <SafeAreaView edges={["top"]}>
               <View className="flex-row items-center justify-between px-4 py-2">
                 <Button
-                  className="rounded-full"
                   variant={"outline"}
                   size={"icon"}
+                  className="rounded-full items-center justify-center"
                 >
                   <Entypo name="chevron-left" size={24} color={"white"} />
                 </Button>
@@ -28,9 +28,9 @@ export default function HomeLayout() {
                   <Text className="text-lg font-medium">Today</Text>
                 </Button>
                 <Button
-                  className="rounded-full"
                   variant={"outline"}
                   size={"icon"}
+                  className="rounded-full items-center justify-center"
                 >
                   <Entypo name="chevron-right" size={24} color={"white"} />
                 </Button>
