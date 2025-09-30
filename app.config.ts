@@ -26,7 +26,7 @@ const ADAPTIVE_ICON = {
   monochrome: "./assets/images/android-icon-monochrome.png",
 };
 
-const EXPO_PROJECT_ID = "";
+const EXPO_PROJECT_ID = "4ae1f158-897a-45f0-83ff-c5a0568108a5";
 
 export default ({ config }: ConfigContext): ExpoConfig => {
   const { name, scheme, bundleIdentifier, packageName } = getDynamicConfig(
