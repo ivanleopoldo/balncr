@@ -232,23 +232,30 @@ function RightActions({ prog }: { prog: SharedValue<number> }) {
   }));
 
   return (
-    <Reanimated.View
-      style={styleAnimation}
-      className={"rounded-xl overflow-hidden"}
-    >
-      <View className="w-6" />
-      <View
-        onLayout={(e) => setTotalWidth(e.nativeEvent.layout.width)}
-        className="flex-row h-full"
-      >
-        <Pressable className="bg-green-400 active:bg-green-500 h-full rounded-r-none px-4 justify-center items-center py-2 w-16">
-          <Entypo name="edit" color={"white"} size={24} />
-        </Pressable>
-        <Pressable className="bg-red-500 active:bg-red-600 rounded-l-none h-full px-4 py-2 justify-center items-center w-16">
-          <Entypo name="trash" color={"white"} size={24} />
-        </Pressable>
-      </View>
-    </Reanimated.View>
+    <View className="flex-row items-center">
+      <View className="w-3" />
+      <Reanimated.View style={styleAnimation} className={"overflow-hidden"}>
+        <View
+          onLayout={(e) => setTotalWidth(e.nativeEvent.layout.width)}
+          className="flex-row h-full"
+        >
+          <Button
+            variant={"outline"}
+            size={"icon"}
+            className="h-full rounded-r-none w-14 border-r-0 rounded-l-xl"
+          >
+            <Entypo name="edit" color={"white"} size={24} />
+          </Button>
+          <Button
+            variant={"outline"}
+            size={"icon"}
+            className="h-full w-14 rounded-l-none rounded-r-xl"
+          >
+            <Entypo name="trash" color={"white"} size={24} />
+          </Button>
+        </View>
+      </Reanimated.View>
+    </View>
   );
 }
 
