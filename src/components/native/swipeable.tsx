@@ -1,7 +1,11 @@
-import BaseSwipeable from "react-native-gesture-handler/ReanimatedSwipeable";
+import BaseSwipeable, {
+  SwipeableMethods,
+  SwipeableProps,
+} from "react-native-gesture-handler/ReanimatedSwipeable";
 import { cssInterop } from "nativewind";
+import * as React from "react";
 
-const Swipeable = cssInterop(BaseSwipeable, {
+const SwipeableBase = cssInterop(BaseSwipeable, {
   className: {
     target: "containerStyle",
   },
@@ -10,4 +14,11 @@ const Swipeable = cssInterop(BaseSwipeable, {
   },
 });
 
-export { Swipeable };
+const Swipeable = React.forwardRef<
+  React.ElementRef<typeof BaseSwipeable>,
+  React.ComponentProps<typeof SwipeableBase>
+>((props, ref) => <SwipeableBase {...props} ref={ref} />);
+
+Swipeable.displayName = "Swipeable";
+
+export { Swipeable, SwipeableMethods, SwipeableProps };

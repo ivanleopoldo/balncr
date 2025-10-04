@@ -1,9 +1,12 @@
 import { View, Text } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function Analytics() {
   return (
-    <View>
-      <Text></Text>
-    </View>
+    <SafeAreaView edges={["right", "left"]}>
+      <View>
+        <Text>Analytics</Text>
+      </View>
+    </SafeAreaView>
   );
 }

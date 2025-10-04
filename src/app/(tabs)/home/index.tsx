@@ -1,38 +1,36 @@
-import { Button } from "@/components/ui/button";
-import { Text } from "@/components/ui/text";
+import { CategoryCard } from "@/components/home/category-card";
 import {
-  FlatList,
-  ScrollView,
-  View,
-  Dimensions,
-  Pressable,
-} from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+  TransactionCard,
+  type TransactionCardProps,
+} from "@/components/home/transaction-card";
 import {
   Carousel,
   type ICarouselInstance,
   Pagination,
 } from "@/components/native/carousel";
+import { SwipeableMethods } from "@/components/native/swipeable";
+import { Button } from "@/components/ui/button";
+import { Text } from "@/components/ui/text";
 import React from "react";
-import Reanimated, {
-  Extrapolation,
-  interpolate,
-  SharedValue,
-  useAnimatedStyle,
-  useSharedValue,
-} from "react-native-reanimated";
-import { Swipeable } from "@/components/native/swipeable";
-import Entypo from "@expo/vector-icons/Entypo";
+import {
+  Dimensions,
+  FlatList,
+  Pressable,
+  ScrollView,
+  View,
+} from "react-native";
+import { useSharedValue } from "react-native-reanimated";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const { width } = Dimensions.get("window");
 
 export default function Home() {
   const progress = useSharedValue<number>(0);
-
-  const ref = React.useRef<ICarouselInstance>(null);
+  const carouselRef = React.useRef<ICarouselInstance>(null);
+  const swipeableRef = React.useRef<SwipeableMethods | null>(null);
 
   const onPressPagination = (index: number) => {
-    ref.current?.scrollTo({
+    carouselRef.current?.scrollTo({
       count: index - progress.value,
       animated: true,
     });
@@ -50,7 +48,7 @@ export default function Home() {
           <View className="gap-3">
             <Carousel
               onProgressChange={progress}
-              ref={ref}
+              ref={carouselRef}
               width={width - 32}
               containerClassName="flex-1 h-40"
               data={Array.from({ length: 3 })}
@@ -173,121 +171,17 @@ export default function Home() {
             contentContainerClassName="gap-3"
             scrollEnabled={false}
             renderItem={(info) => {
-              return <TransactionCard {...info.item} />;
+              return (
+                <TransactionCard
+                  {...info.item}
+                  index={info.index}
+                  swipeableRef={swipeableRef}
+                />
+              );
             }}
           />
         </View>
       </ScrollView>
     </SafeAreaView>
-  );
-}
-
-type CategoryCardProps = {
-  title: string;
-  currency: string;
-  total: string;
-  percent: string;
-};
-
-function CategoryCard({ ...props }: CategoryCardProps) {
-  return (
-    <Pressable className="active:bg-input/50 h-fit p-4 w-24 bg-input/30 border-border border mr-3 gap-3 rounded-lg">
-      <Text className="text-sm">{props.title}</Text>
-      <View className="flex-row">
-        <Text>{props.currency}</Text>
-        <Text className="font-semibold">{props.total}</Text>
-      </View>
-      <View className="flex-row items-center">
-        <Text className="text-xs bg-input px-[6px] py-[3px] rounded-full">
-          {props.percent}%
-        </Text>
-      </View>
-    </Pressable>
-  );
-}
-
-type TransactionCardProps = {
-  description: string;
-  category: string;
-  currency: string;
-  price: string;
-  type: "expense" | "savings" | "income";
-  account: string;
-};
-
-function RightActions({ prog }: { prog: SharedValue<number> }) {
-  const [totalWidth, setTotalWidth] = React.useState(0);
-
-  const styleAnimation = useAnimatedStyle(() => ({
-    transform: [
-      {
-        translateX: interpolate(
-          prog.value,
-          [0, 1],
-          [totalWidth, 0],
-          Extrapolation.CLAMP,
-        ),
-      },
-    ],
-  }));
-
-  return (
-    <View className="flex-row items-center">
-      <View className="w-3" />
-      <Reanimated.View style={styleAnimation} className={"overflow-hidden"}>
-        <View
-          onLayout={(e) => setTotalWidth(e.nativeEvent.layout.width)}
-          className="flex-row h-full"
-        >
-          <Button
-            variant={"outline"}
-            size={"icon"}
-            className="h-full rounded-r-none w-14 border-r-0 rounded-l-xl"
-          >
-            <Entypo name="edit" color={"white"} size={24} />
-          </Button>
-          <Button
-            variant={"outline"}
-            size={"icon"}
-            className="h-full w-14 rounded-l-none rounded-r-xl"
-          >
-            <Entypo name="trash" color={"white"} size={24} />
-          </Button>
-        </View>
-      </Reanimated.View>
-    </View>
-  );
-}
-
-function TransactionCard({ ...props }: TransactionCardProps) {
-  const priceArr = props.price.split(".");
-
-  return (
-    <Swipeable
-      overshootRight={false}
-      renderRightActions={(progress, translation) => {
-        return <RightActions prog={progress} />;
-      }}
-      enableTrackpadTwoFingerGesture
-      childrenContainerClassName="px-4 py-2 border-border border bg-input/30 rounded-xl flex-1 justify-between flex-row"
-    >
-      <View className="">
-        <Text className="text-lg font-semibold">{props.description}</Text>
-        <Text className="text-muted-foreground">{props.category}</Text>
-      </View>
-      <View className="justify-center">
-        <View className="items-baseline justify-center flex-row">
-          <Text className="font-semibold text-lg">
-            {props.type === "expense" ? "-" : "+"}
-            {props.currency}
-            {priceArr[0]}
-          </Text>
-          <Text className="text-muted-foreground text-md">.{priceArr[1]}</Text>
-        </View>
-        <View className="items-end">
-          <Text className="text-muted-foreground">{props.account}</Text>
-        </View>
-      </View>
-    </Swipeable>
   );
 }
