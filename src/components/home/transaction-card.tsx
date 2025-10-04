@@ -1,4 +1,3 @@
-import Entypo from "@expo/vector-icons/Entypo";
 import React from "react";
 import { View } from "react-native";
 import Reanimated, {

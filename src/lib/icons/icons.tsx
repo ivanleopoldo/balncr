@@ -1,4 +1,4 @@
-import { icons, LucideIcon, LucideProps } from "lucide-react-native";
+import { icons, LucideIcon } from "lucide-react-native";
 import { iconWithClassName } from "./iconWithClassName";
 
 export const Icons = Object.fromEntries(
