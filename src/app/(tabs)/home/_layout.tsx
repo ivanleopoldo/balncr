@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Text } from "@/components/ui/text";
-import Entypo from "@expo/vector-icons/Entypo";
 import { Stack } from "expo-router";
+import { Icons } from "@/lib/icons/icons";
 import { View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
@@ -19,7 +19,7 @@ export default function HomeLayout() {
                   size={"icon"}
                   className="rounded-full items-center justify-center"
                 >
-                  <Entypo name="chevron-left" size={24} color={"white"} />
+                  <Icons.ChevronLeft />
                 </Button>
                 <Button
                   variant={"outline"}
@@ -32,7 +32,7 @@ export default function HomeLayout() {
                   size={"icon"}
                   className="rounded-full items-center justify-center"
                 >
-                  <Entypo name="chevron-right" size={24} color={"white"} />
+                  <Icons.ChevronRight />
                 </Button>
               </View>
             </SafeAreaView>

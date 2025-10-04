@@ -1,5 +1,5 @@
-import Entypo from "@expo/vector-icons/Entypo";
 import { Tabs } from "expo-router";
+import { House, CreditCard, ChartBar, User } from "lucide-react-native";
 
 export default function TabsLayout() {
   return (
@@ -14,7 +14,7 @@ export default function TabsLayout() {
           headerShown: false,
           title: "Dashboard",
           tabBarIcon: (props) => {
-            return <Entypo name="home" {...props} />;
+            return <House {...props} />;
           },
         }}
       />
@@ -24,7 +24,7 @@ export default function TabsLayout() {
           headerShown: false,
           title: "Accounts",
           tabBarIcon: (props) => {
-            return <Entypo name="credit-card" {...props} />;
+            return <CreditCard {...props} />;
           },
         }}
       />
@@ -34,7 +34,7 @@ export default function TabsLayout() {
           headerShown: false,
           title: "Analytics",
           tabBarIcon: (props) => {
-            return <Entypo name="pie-chart" {...props} />;
+            return <ChartBar {...props} />;
           },
         }}
       />
@@ -44,7 +44,7 @@ export default function TabsLayout() {
           headerShown: false,
           title: "Profile",
           tabBarIcon: (props) => {
-            return <Entypo name="user" {...props} />;
+            return <User {...props} />;
           },
         }}
       />

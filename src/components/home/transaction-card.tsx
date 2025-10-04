@@ -10,6 +10,7 @@ import Reanimated, {
 import { Swipeable, SwipeableMethods } from "../native/swipeable";
 import { Button } from "../ui/button";
 import { Text } from "../ui/text";
+import { Icons } from "@/lib/icons/icons";
 
 export type TransactionCardProps = {
   description: string;
@@ -69,7 +70,7 @@ export function TransactionCard({ ...props }: TransactionCardProps) {
               size={"icon"}
               className="h-full rounded-r-none w-14 border-r-0 rounded-l-xl"
             >
-              <Entypo name="edit" color={"white"} size={24} />
+              <Icons.Pencil />
             </Button>
             <Button
               onPress={() => {
@@ -80,7 +81,7 @@ export function TransactionCard({ ...props }: TransactionCardProps) {
               size={"icon"}
               className="h-full w-14 rounded-l-none rounded-r-xl"
             >
-              <Entypo name="trash" color={"white"} size={24} />
+              <Icons.Trash />
             </Button>
           </View>
         </Reanimated.View>
